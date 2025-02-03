@@ -3,11 +3,16 @@ node_js:
   - "stable"
 dist: focal
 
+# Before we run the 'deploy' step, install or update the needed gems
+before_deploy:
+  - gem install dpl
+  - gem install uri -v 1.0.2
+
 deploy:
   provider: pages
-  strategy: git
-  cleanup: false
-  token: $github_token
+  strategy: git          # dpl v2
+  cleanup: false         # replaces skip_cleanup: true in dpl v2
+  token: $github_token   # environment variable in Travis
   local_dir: build
   on:
     branch: main
