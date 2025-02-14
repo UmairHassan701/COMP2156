@@ -3,17 +3,32 @@ node_js:
   - "stable"
 dist: focal
 
-# Before we run the 'deploy' step, install or update the needed gems
+branches:
+  only:
+    - main
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+
+script:
+  - npm run build
+  # Optionally rename index.html -> 404.html if you use React Router
+  # - mv build/index.html build/404.html
+
 before_deploy:
+  # Pin or update gems to fix the "uri" conflict or to ensure dpl v2 usage
   - gem install dpl
   - gem install uri -v 1.0.2
 
 deploy:
   provider: pages
-  strategy: git          # dpl v2
-  cleanup: false         # replaces skip_cleanup: true in dpl v2
-  token: $github_token   # environment variable in Travis
+  strategy: git         # dpl v2 strategy
+  cleanup: false        # replaces skip_cleanup: true in dpl v2
+  token: $github_token  # environment variable in Travis
   local_dir: build
   on:
     branch: main
-
