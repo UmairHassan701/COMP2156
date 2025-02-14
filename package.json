@@ -31,7 +31,6 @@
   "bugs": {
     "url": "https://github.com/UmairHassan701/COMP2156/issues"
   },
-  "homepage": "https://github.com/UmairHassan701/COMP2156#readme",
   "homepage": "https://UmairHassan701.github.io/COMP2156",
   "eslintConfig": {
     "extends": [
