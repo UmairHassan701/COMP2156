@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo '>>> Windows Build Step'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo '>>> Windows Test Step'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo '>>> Windows Deploy Step'
+            }
+        }
+    }
+}
